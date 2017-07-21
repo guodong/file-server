@@ -1,7 +1,10 @@
 var express = require('express')
 var multer  = require('multer')
 var shortid = require('shortid')
+var cors = require('cors')
 var fs = require('fs')
+
+app.use(cors())
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
