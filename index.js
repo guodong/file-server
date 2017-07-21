@@ -4,8 +4,6 @@ var shortid = require('shortid')
 var cors = require('cors')
 var fs = require('fs')
 
-app.use(cors())
-
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'data/')
@@ -22,6 +20,8 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 var app = express()
 var domain = process.env.DOMAIN || ''
+
+app.use(cors())
 
 app.post('/', upload.single('file'), function (req, res, next) {
   console.log(req.file.filename)
