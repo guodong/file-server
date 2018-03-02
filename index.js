@@ -23,10 +23,16 @@ var domain = process.env.DOMAIN || ''
 
 app.use(cors())
 
-app.post('/', upload.single('file'), function (req, res, next) {
+app.post('/:file', upload.single('file'), function (req, res, next) {
   console.log(req.file.filename)
   res.end(domain + '/' + req.file.filename)
 })
+
+app.get('/', function (req, res){
+	console.log(123);
+	res.send({result:"Hello World"});
+})
+
 
 app.get('/:file', function (req, res){
   if (fs.existsSync('data/' + req.params.file)) {
