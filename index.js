@@ -13,7 +13,9 @@ var storage = multer.diskStorage({
     if (file.originalname.lastIndexOf('.') !== -1) {
 	  ext = file.originalname.substring(file.originalname.lastIndexOf('.') + 1)
 	}
-    cb(null, shortid.generate()+'.' + ext)
+   cb(null, shortid.generate()+'.' + ext)
+   //cb(null, shortid.generate()+'.' + file.originalname)
+   
   }
 })
 
@@ -29,7 +31,6 @@ app.post('/:file', upload.single('file'), function (req, res, next) {
 })
 
 app.get('/', function (req, res){
-	console.log(123);
 	res.send({result:"Hello World"});
 })
 
